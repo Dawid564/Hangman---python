@@ -1,0 +1,48 @@
+import random
+
+class hangman:
+	def __init__(self):
+		self.choosenWorld = self.wordDatabase() 
+		self.generateInput(self.choosenWorld)
+		self.validateUser(self.choosenWorld)
+
+	def validateUser(self, word):
+		print(" ")
+		print("get letter")
+		letter = input()
+		count = len(word)
+		letterFound = 0
+		letterPosition = -5
+
+		while(count > 0):			
+			if(str(word[count - 1]) == str(letter)):
+				if(letterPosition == -5):
+					letterPosition = [count - 1]
+				letterFound = letterFound + 1
+				count = count - 1
+			else:
+				count = count - 1
+
+		if(letterFound > 0):
+			self.updateHangmanPassword(letterFound, letterPosition, self.choosenWorld)
+
+
+	def decreseNumberOfPoints(self):
+		print("points decresed")
+
+	def updateHangmanPassword(self, letter, letterPosition, word):
+		self.listOfDiscoveredLetters 
+
+	def generateInput(self, word):
+		length = len(word)
+		pattern = " _ "
+		while(length > 1):
+			pattern = pattern + "_ " 
+			length = length - 1
+		print(pattern)
+
+	def wordDatabase(self):
+		wordList = ["kibel"]
+		return random.choice(wordList)
+
+hangman()
