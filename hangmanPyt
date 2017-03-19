@@ -2,47 +2,57 @@ import random
 
 class hangman:
 	def __init__(self):
-		self.choosenWorld = self.wordDatabase() 
-		self.generateInput(self.choosenWorld)
-		self.validateUser(self.choosenWorld)
+		self.randWord = self.getWord()
+		self.userInterface()
 
-	def validateUser(self, word):
-		print(" ")
+	def userInterface(self):
+		correctLetters = [] # list of correct already apt letters
+		wordLen = len(self.randWord)
+		wordLen1 = len(self.randWord)
+		isLetterFound = False
+		win = False
+		lives = 10;
+
+		expression = ""
+		while (wordLen > 0): # display first underscore list
+			wordLen = wordLen - 1
+			expression = expression + "_ "
+		print(expression)
 		print("get letter")
-		letter = input()
-		count = len(word)
-		letterFound = 0
-		letterPosition = -5
+		print("")
+		while (lives > 0 or win): # finish when end of lives or guess right word
+			isLetterFound = False
+			wordLen1 = len(self.randWord)
+			print("give one letter")
+			letterFromUser = input()
+			for x in range(0, len(self.randWord)): # is user give wrong or right letter
+				if(self.randWord[x] == letterFromUser):
+					# if right letter
+					correctLetters.append(letterFromUser)
+					wordLen1 = wordLen1 + 1
+					isLetterFound = True
+			if(not isLetterFound):
+				#user choose wrong letter
+				lives = lives - 1
+			#print(correctLetters)
+			win = self.showData(self.randWord, correctLetters, lives)
+		if(win):
+			print("WIN !!")
+		else:
+			print("LOOSE !!")
 
-		while(count > 0):			
-			if(str(word[count - 1]) == str(letter)):
-				if(letterPosition == -5):
-					letterPosition = [count - 1]
-				letterFound = letterFound + 1
-				count = count - 1
-			else:
-				count = count - 1
+	#validate letters
+	def showData(self, word, letters, lives):
+		print()
+		print("************************")
+		print("lives ",lives)
+		print("word ",word)
+		print("letters ",letters)
+		print("************************")
+		print()
+		return False
 
-		if(letterFound > 0):
-			self.updateHangmanPassword(letterFound, letterPosition, self.choosenWorld)
-
-
-	def decreseNumberOfPoints(self):
-		print("points decresed")
-
-	def updateHangmanPassword(self, letter, letterPosition, word):
-		self.listOfDiscoveredLetters 
-
-	def generateInput(self, word):
-		length = len(word)
-		pattern = " _ "
-		while(length > 1):
-			pattern = pattern + "_ " 
-			length = length - 1
-		print(pattern)
-
-	def wordDatabase(self):
-		wordList = ["kibel"]
-		return random.choice(wordList)
+	def getWord(self):
+		return random.choice(['japko', 'bigos', 'kisiel'])
 
 hangman()
