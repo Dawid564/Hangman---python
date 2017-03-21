@@ -6,12 +6,12 @@ class hangman:
 		self.userInterface()
 
 	def userInterface(self):
-		correctLetters = [] # list of correct already apt letters
+		correctLetters = ["&"] # list of correct already apt letters
 		wordLen = len(self.randWord)
 		wordLen1 = len(self.randWord)
 		isLetterFound = False
 		win = False
-		lives = 10;
+		lives = 10; # number of lives
 
 		expression = ""
 		while (wordLen > 0): # display first underscore list
@@ -43,6 +43,17 @@ class hangman:
 
 	#validate letters
 	def showData(self, word, letters, lives):
+		# prepare list
+		undercover = []
+		for i in range(0, len(word)):
+			undercover.append(" _")
+		# display uncovered letters
+		for x in range(0, len(word)):
+			for i in range(0, len(letters)):
+				if(word[x] == letters[i]):
+					undercover[x] = word[x]
+		print("BEST ANSWER EVER ", undercover)
+
 		print()
 		print("************************")
 		print("lives ",lives)
@@ -52,6 +63,7 @@ class hangman:
 		print()
 		return False
 
+	# list of passwords
 	def getWord(self):
 		return random.choice(['japko', 'bigos', 'kisiel'])
 
