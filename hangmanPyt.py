@@ -36,6 +36,8 @@ class hangman:
 				lives = lives - 1
 			#print(correctLetters)
 			win = self.showData(self.randWord, correctLetters, lives)
+			if(win):
+				break
 		if(win):
 			print("WIN !!")
 		else:
@@ -52,15 +54,18 @@ class hangman:
 			for i in range(0, len(letters)):
 				if(word[x] == letters[i]):
 					undercover[x] = word[x]
-		print("BEST ANSWER EVER ", undercover)
-
+		# check is password is full undercover
+		countDash = 0
+		print("PASSWORD: ", undercover)
+		print("REMAIN LIVES: ", lives)
 		print()
-		print("************************")
-		print("lives ",lives)
-		print("word ",word)
-		print("letters ",letters)
-		print("************************")
 		print()
+		print()
+		for z in range(0, len(undercover)):
+			if(undercover[z] == " _"):
+				countDash = countDash + 1
+		if(countDash == 0):
+			return True	
 		return False
 
 	# list of passwords
