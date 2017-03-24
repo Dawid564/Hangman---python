@@ -17,13 +17,14 @@ class hangman:
 		while (wordLen > 0): # display first underscore list
 			wordLen = wordLen - 1
 			expression = expression + "_ "
-		print(expression)
-		print("get letter")
+		#print(expression)
+		print("HANGMAN START!")
 		print("")
+		self.showData(self.randWord, correctLetters, lives)
 		while (lives > 0 or win): # finish when end of lives or guess right word
 			isLetterFound = False
 			wordLen1 = len(self.randWord)
-			print("give one letter")
+			print("give a letter")
 			letterFromUser = input()
 			for x in range(0, len(self.randWord)): # is user give wrong or right letter
 				if(self.randWord[x] == letterFromUser):
@@ -48,12 +49,17 @@ class hangman:
 		# prepare list
 		undercover = []
 		for i in range(0, len(word)):
-			undercover.append(" _")
+			undercover.append("_")
 		# display uncovered letters
 		for x in range(0, len(word)):
 			for i in range(0, len(letters)):
 				if(word[x] == letters[i]):
 					undercover[x] = word[x]
+		
+		#add firs and last letter
+		undercover[0] = word[0]
+		undercover[len(word) - 1] = word[len(word) - 1] 			
+		
 		# check is password is full undercover
 		countDash = 0
 		print("PASSWORD: ", undercover)
@@ -62,7 +68,7 @@ class hangman:
 		print()
 		print()
 		for z in range(0, len(undercover)):
-			if(undercover[z] == " _"):
+			if(undercover[z] == "_"):
 				countDash = countDash + 1
 		if(countDash == 0):
 			return True	
@@ -70,6 +76,7 @@ class hangman:
 
 	# list of passwords
 	def getWord(self):
-		return random.choice(['japko', 'bigos', 'kisiel'])
+		return random.choice(['japko', 'bigos', 'matlab', 'zut', 'klimaszewski', 'technopark', 'escaperoom', 'marzenka', 'kochamzut', 
+			'buraki', 'schabowy', 'programowanie', 'cyfryzacja', 'dziekan', 'youtube', 'mleko', 'czad', 'radio', 'auto' ])
 
 hangman()
