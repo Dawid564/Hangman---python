@@ -76,7 +76,7 @@ class hangman:
 
 	# list of passwords
 	def getWord(self):
-		return random.choice(['japko', 'bigos', 'matlab', 'zut', 'klimaszewski', 'technopark', 'escaperoom', 'marzenka', 'kochamzut', 
-			'buraki', 'schabowy', 'programowanie', 'cyfryzacja', 'dziekan', 'youtube', 'mleko', 'czad', 'radio', 'auto' ])
+		return random.choice(['japko', 'bigos', 'matlab', 'marzenka', 
+			'buraki', 'schabowy', 'programowanie', 'youtube', 'mleko', 'czad', 'radio', 'auto' ])
 
 hangman()
